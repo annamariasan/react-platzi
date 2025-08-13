@@ -5,6 +5,9 @@ import Home from "./components/Home";
 import Dashboard from "./components/Dashboard";
 import Overview from "./components/Overview";
 import Settings from "./components/Settings";
+import Profile from "./components/Profile";
+import ProtectedRoute from "./components/ProtectedRoute";
+import NotFound from "./components/NotFound";
 
 function App() {
 
@@ -21,6 +24,9 @@ function App() {
           <li>
             <Link to="/dashboard">Dashboard</Link>
           </li>
+          <li>
+            <Link to="/profile">Profile</Link>
+          </li>
         </ul>
       </nav>
       <Routes>
@@ -35,6 +41,13 @@ function App() {
             </Suspense>
           } />
         </Route>
+        <Route path="/profile" element={
+          <ProtectedRoute isAuthenticated={true}>
+            <Profile />
+          </ProtectedRoute>
+        }>
+        </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   )
